@@ -1,5 +1,6 @@
 package com.uca.capas.configuration;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

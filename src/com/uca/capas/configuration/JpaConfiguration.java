@@ -1,5 +1,16 @@
 package com.uca.capas.configuration;
 
+import java.util.Properties;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
+import com.springsource.tcserver.serviceability.request.DataSource;
+
 @Configuration
 public class JpaConfiguration {
 	
@@ -27,6 +38,7 @@ public class JpaConfiguration {
 		dataSource.setPassword("postgres");
 		return dataSource;
 	}
+	
 	
 	Properties hibernateProperties() {
 		Properties properties = new Properties();

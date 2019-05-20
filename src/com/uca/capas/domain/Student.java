@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 
 
+
 @Entity
 @Table(schema="public",name="student")
 public class Student {
