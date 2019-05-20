@@ -4,27 +4,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<title>Spring JPA</title>
 </head>
 <body>
 
-	<table>
+	<form action="${pageContext.request.contextPath}/form" method="post">
+			<label>Buscar por ID</label> <input type="number" name="ID"><br>
+			<input type= "submit" value= "Enviar">
+	</form>
+
+	<h1>Usuario Encontrado</h1>
+	
+	<table border="1">
 		<tr>
-			<th>Name</th>
-			<th>Last Name</th>
-			<th>Age</th>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Edad</th>
 			<th>Status</th>
 		</tr>
-			<c:forEach items="${students}" var="students">
-				<tr>
-					<td>${students.sName}</td>
-					<td>${students.lName}</td>
-					<td>${students.sAge}</td>
-					<td>${students.activoDelegate}</td>
-				</tr>	
-			</c:forEach>
+		
+		<tr>
+			<th>${student2.sName}</th>
+			<th>${student2.1Name}</th>
+			<th>${student2.sAge}</th>
+			<th>${student2.activoDelegate}</th>	
+		</tr>	
+	
 	</table>
 
+<h1>Lista de Usuarios</h1>
+	<table border= "1">
+	
+		<tr>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Edad</th>
+			<th>Status</th>
+		</tr>
+	
+	<c:forEach items="${student}" var="student">
+	
+	<tr>
+	
+		<th>${student.sName}</th>
+			<th>${student.1Name}</th>
+			<th>${student.sAge}</th>
+			<th>${student.activoDelegate}</th>	
+	
+	</tr>
+	
+	</c:forEach>
+	
+	
+	
+	</table>
 </body>
 </html>
