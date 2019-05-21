@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uca.capas.domain.Student;
 
@@ -34,6 +35,19 @@ public class StudentDAOImpl implements StudentDAO {
 		// TODO Auto-generated method stub
 		Student student = entityManager.find(Student.class, code);
 		return student;
+	}
+	
+	@Transactional
+	public int save(Student s, Integer newRow) throws DataAccessException{
+		try {
+			if(newRow == 1) entityManager.persist(s);
+			else entityManager.merge(s);
+			entityManager.flush();
+			return 1;
+		}catch(Throwable e) {
+			e.printStackTrace();
+			return 1;
+		}
 	}
 	
 }

@@ -5,7 +5,10 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -16,6 +19,8 @@ import javax.persistence.Table;
 public class Student {
 	
 	@Id
+	@GeneratedValue(generator= "student_id_student_seq", strategy=GenerationType.AUTO)
+	@SequenceGenerator(name = "student_id_student_seq", sequenceName= "public.student_id_student_seq", allocationSize= 1 )
 	@Column(name="id_student")
 	private Integer cStudent;
 	

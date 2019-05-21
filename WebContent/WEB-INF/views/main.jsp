@@ -59,5 +59,9 @@
 	
 	
 	</table>
+	
+	<form action= "${pageContext.request.contextPath}/save" method="post">
+		<input type="submit" value="Agregar un nuevo Usuario">
+	</form>
 </body>
 </html>
