@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,4 +91,54 @@ public class MainController {
 		mav.setViewName("main");
 		return mav;
 	}
+	
+	@RequestMapping("/delete")
+	public ModelAndView formData(@RequestParam(value ="id2")String id_stdnt) {
+		ModelAndView mav = new ModelAndView();
+		List<Student> student = null;
+		Student student2 = null;
+		try {
+			studentDao.delete(id_stdnt);
+			student= studentDao.findAll();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		mav.addObject("student", student);
+		mav.setViewName("main");
+		return mav;
+	}
+	
+	@RequestMapping(value="/mod", method=RequestMethod.POST)
+	public ModelAndView mod(@ModelAttribute Student s) {
+		ModelAndView mav = new ModelAndView();
+		List<Student> student = null;
+		
+		try {
+			studentDao.update(s);
+			student = studentDao.findAll();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		mav.addObject("student", student);
+		mav.setViewName("main");
+		return mav;
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public ModelAndView update(@RequestParam(value= "id3") int id_stdnt) {
+		ModelAndView mav = new ModelAndView();
+		Student student= null;
+		try {
+			student = studentDao.findOne(id_stdnt);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		mav.addObject("student", student);
+		mav.setViewName("update");
+		return mav;
+	} 
 }

@@ -13,6 +13,11 @@
 			<label>Buscar por ID</label> <input type="number" name="ID"><br>
 			<input type= "submit" value= "Enviar">
 	</form>
+	
+	<form action="${pageContext.request.contextPath}/delete" method="post">
+			<label>Nombre a Borrar</label> <input type="number" name="ID2"><br>
+			<input type= "submit" value= "Enviar">
+	</form>
 
 	<h1>Usuario Encontrado</h1>
 	
@@ -22,6 +27,7 @@
 			<th>Apellido</th>
 			<th>Edad</th>
 			<th>Status</th>
+			<th>Editar</th>
 		</tr>
 		
 		<tr>
@@ -32,6 +38,12 @@
 		</tr>	
 	
 	</table>
+	
+	<form action= "${pageContext.request.contextPath}/save" method= "post">
+		<br>
+		<input type = "submit" value= "Agregar Usuario">
+	
+	</form>
 
 <h1>Lista de Usuarios</h1>
 	<table border= "1">
@@ -41,6 +53,7 @@
 			<th>Apellido</th>
 			<th>Edad</th>
 			<th>Status</th>
+			<th>Editar</th>
 		</tr>
 	
 	<c:forEach items="${student}" var="student">
@@ -51,7 +64,10 @@
 			<th>${student.1Name}</th>
 			<th>${student.sAge}</th>
 			<th>${student.activoDelegate}</th>	
-	
+			<th> <form action= "${pageContext.request.contextPath}/update" method="post">
+				<input type="hidden" name="ID3" value=${student.cStudent }><br>
+				<input type= "submit" value= "editar">
+	</form></th>
 	</tr>
 	
 	</c:forEach>
@@ -60,8 +76,6 @@
 	
 	</table>
 	
-	<form action= "${pageContext.request.contextPath}/save" method="post">
-		<input type="submit" value="Agregar un nuevo Usuario">
-	</form>
+	
 </body>
 </html>

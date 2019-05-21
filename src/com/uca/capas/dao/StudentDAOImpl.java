@@ -50,4 +50,38 @@ public class StudentDAOImpl implements StudentDAO {
 		}
 	}
 	
+	@Transactional
+	public int update(Student s) throws DataAccessException{
+		try {
+			entityManager.merge(s);
+			return 1;
+		}
+		catch(Throwable e) {
+			e.printStackTrace();
+			return 1;
+		}
+	}
+	
+	@Transactional
+	public int delete(String name) throws DataAccessException{
+		try {
+			StringBuffer sb= new StringBuffer();
+			sb.append("select * from public.student where s_name=:name");
+			Query query = entityManager.createNativeQuery(sb.toString(), Student.class);
+			query.setParameter("name", name);
+			Student resultset = (Student) query.setMaxResults(1).getSingleResult();
+			entityManager.remove(resultset);
+			return 1;
+		}catch (Throwable e) {
+			e.printStackTrace();
+			return 1;
+		}
+	}
+
+	@Override
+	public int delete(Student s) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }
